@@ -16,10 +16,13 @@
     * If u want to see the documents as serial wise
         db.products.find().pretty()
 
-    * Retrieving details from an embedded document  
+- Retrieving details from an embedded document 
+    ```
         db.products.find({'categories.sub':'smartphones'})
+    ```    
 
-    * Retrieving details based on an array element
+- Retrieving details based on an array element
+    ```
         db.products.find({'colors':{$in:['black','white']}})
 
         db.products.find({'colors':{$nin:["gold","rosegold"]}})
@@ -40,26 +43,32 @@
                         "rosegold"
                 ]
         }
+    ```    
 
-    * Using BSON datatypes to retrieve data   
-        db.products.find({'price':{$type:'double'}})
+- Using BSON datatypes to retrieve data
+    ```
+    db.products.find({'price':{$type:'double'}})
+    ```
 
-    * Logical operator
-        db.products.find({
-            $and:[
-                {'categories.sub':'smartphones'},
-                {'price':{$gte:60001}}
-            ]
-        }).pretty() 
+- Logical operator
+    ```
+    db.products.find({
+        $and:[
+            {'categories.sub':'smartphones'},
+            {'price':{$gte:60001}}
+        ]
+    }).pretty() 
 
-        db.products.find({
-            $or:[
-                {'categories.sub':'smartphones'},
-                {'price':{$gte:60001}}
-            ]
-        }).pretty()    
-
-    * Usage of operator ($exists , $elemMatch) 
+    db.products.find({
+        $or:[
+            {'categories.sub':'smartphones'},
+            {'price':{$gte:60001}}
+        ]
+    }).pretty()  
+    ```  
+   
+- Usage of operator ($exists , $elemMatch) 
+    ```
         db.products.find( 
             {$and:[
                 {"colors":{$elemMatch:{$in:['rosegold','silver']}}},
@@ -68,7 +77,8 @@
             {"prodname":1,"manufacturer":1,"colors":1}
         ).pretty() 
 
-        Note: $exists operator only check whether proprty is existing under document or not . But it never check the value ('null','array','string') of property.The value of $exists will be either true or false.     
+        Note: $exists operator only check whether proprty is existing under document or not . But it never check the value ('null','array','string') of property.The value of $exists will be either true or false.  
+    ```       
 
           
         
