@@ -75,6 +75,19 @@ db.products.updateMany(
     ) 
     
     ```
+    * If u want to push multiple value ($each, $position, $slice  ~ operators )
+    ```
+        db.products.updateOne(
+            {_id:ObjectId("61a3bf0eb6db30c378b51f62")},
+            {$push:{colors:{$each:["black","white"],$position:2,$slice:4}}}
+        )
+    ```  
+-  $addToSet operator
+
+    >_Note: If the passing value doesn't exist inside the array then only it can work_
+    ```
+    db.blog.update({"blogid":1},{$addToSet:{"comments":"bed"}})
+    ```
 
 - Upsert & $setOnInsert operator   
     ```
@@ -114,6 +127,29 @@ db.products.updateMany(
         {"_id" : 21344555},
         {$min:{"price":80003}}
     )
+    ```       
+
+- $pull update operator:
+
+    >_It works if the element is either array or array with Object._
+    >_It works even if you use any condition operator in query syntax._
+
+    ```
+        db.blog.update({"blogid":1},{$pullAll:{"comments":{"name":"Phil","comment":{$eq:"Test"}}}})
+    ```
+
+- $pullAll update operator:
+
+    >_It only works if the element is array._
+    >_It only works if you don't use any condition operator in query syntax_    
+
+    ```
+        db.users.update( {"name":{$eq:"Soura"}}, {$pullAll:{"skills":["JS","Angular"]}})
+    ```
+
+- $rename operator:
+    ```
+        db.blog.update( {"blogid" : 1}, {$rename:{"title":"titles"}})
     ```    
 
 
