@@ -81,6 +81,14 @@ db.products.updateMany(
             {_id:ObjectId("61a3bf0eb6db30c378b51f62")},
             {$push:{colors:{$each:["black","white"],$position:2,$slice:4}}}
         )
+
+        db.employee.update(
+            {name:{$eq:"Soura Ghosh"}},
+            {$push:{awards:{
+                $each:[{years:"2021",name:"RISE",month:7},{years:"2021",name:"RISE",month:9}],
+                $position:0,$slice:4
+            }}}
+        )
     ```  
 -  $addToSet operator
 
@@ -136,6 +144,11 @@ db.products.updateMany(
 
     ```
         db.blog.update({"blogid":1},{$pullAll:{"comments":{"name":"Phil","comment":{$eq:"Test"}}}})
+
+        db.employee.update(
+            {name:{$eq:"Soura Ghosh"}},
+            {$pull:{awards:{$elemMatch:{month:{$gt:5}}}}}
+        )
     ```
 
 - $pullAll update operator:

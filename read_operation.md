@@ -76,6 +76,11 @@
             ]},
             {"prodname":1,"manufacturer":1,"colors":1}
         ).pretty() 
+
+        db.employee.find(
+            {awards:{$elemMatch:{month:{$all:[5,8]}}}},
+            {name:1,designation:1}
+        )
     ``` 
     >_Note: $exists operator only check whether proprty is existing under document or not . But it never check the value ('null','array','string') of property.The value of $exists will be either true or false._  
           
