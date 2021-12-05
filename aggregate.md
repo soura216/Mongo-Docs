@@ -63,3 +63,10 @@ db.employee.aggregate([
     {$out:'list_of_awards'}
 ])    
 ```
+
+- $lookup
+```
+db.customer.aggregate([
+    {$lookup:{from:'resident',localField:'cname',foreignField:'rname',as:'resident_details'}}
+]).pretty()
+```
