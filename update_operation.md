@@ -140,7 +140,7 @@ db.products.updateMany(
 - $pull update operator:
 
     >_It works if the element is either array or array with Object._
-    >_It works even if you use any condition operator in query syntax._
+    >_It only works if you use any condition operator in query syntax._
 
     ```
         db.blog.update({"blogid":1},{$pullAll:{"comments":{"name":"Phil","comment":{$eq:"Test"}}}})

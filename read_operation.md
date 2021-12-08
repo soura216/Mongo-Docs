@@ -83,7 +83,7 @@
         )
     ``` 
     >_Note: $exists operator only check whether proprty is existing under document or not . But it never check the value ('null','array','string') of property.The value of $exists will be either true or false._  
-    >_$elemMatch is only applicable for array fields_
+    >_$elemMatch is only applicable for array or array with object_
           
 
           
